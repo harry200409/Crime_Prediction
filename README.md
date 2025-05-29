@@ -33,7 +33,7 @@ A machine learning web application that predicts whether a crime case will be cl
    python -m venv .venv
    ```
 3. Activate the virtual environment:
-   - On Windows:
+   On Windows:
      ```bash
      .venv\Scripts\activate
      ```
