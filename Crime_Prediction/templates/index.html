@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Case Prediction</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #f4f4f9, #e0eafc);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 40px;
+      max-width: 600px;
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .form-container:hover {
+      transform: translateY(-5px);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #2c3e50;
+      font-size: 1.8em;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #333;
+    }
+
+    input {
+      padding: 12px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1em;
+      transition: border 0.2s ease-in-out;
+    }
+
+    input:focus {
+      border-color: #2980b9;
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.1);
+    }
+
+    .btn-submit {
+      padding: 14px;
+      background-color: #2980b9;
+      color: white;
+      font-size: 1.1em;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .btn-submit:hover {
+      background-color: #21618c;
+    }
+
+    .result {
+      text-align: center;
+      margin-top: 25px;
+      padding: 15px;
+      background: #dff0d8;
+      border-radius: 8px;
+      color: #2e7d32;
+      font-weight: 600;
+      animation: fadeIn 0.5s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (min-width: 600px) {
+      form {
+        grid-template-columns: 1fr 1fr;
+        gap: 20px 40px;
+      }
+      .form-group:nth-child(odd):last-child {
+        grid-column: span 2;
+      }
+    }
+
+    form .btn-submit {
+      grid-column: span 2;
+    }
+
+    .result {
+      grid-column: span 2;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Case Prediction</h2>
+    <form action="/predict" method="post">
+      <div class="form-group">
+        <label for="City">City</label>
+        <input type="text" name="City" required />
+      </div>
+
+      <div class="form-group">
+        <label for="Crime Code">Crime Code</label>
+        <input type="number" name="Crime Code" required />
+      </div>
+
+      <div class="form-group">
+        <label for="Crime Description">Crime Description</label>
+        <input type="text" name="Crime Description" required />
+      </div>
+
+      <div class="form-group">
+        <label for="Victim Age">Victim Age</label>
+        <input type="number" name="Victim Age" required />
+      </div>
+
+      <div class="form-group">
+        <label for="Victim Gender">Victim Gender</label>
+        <input type="text" name="Victim Gender" required />
+      </div>
+
+      <div class="form-group">
+        <label for="Weapon Used">Weapon Used</label>
+        <input type="text" name="Weapon Used" required />
+      </div>
+
+      <div class="form-group">
+        <label for="Crime Domain">Crime Domain</label>
+        <input type="text" name="Crime Domain" required />
+      </div>
+
+      <div class="form-group">
+        <label for="Police Deployed">Police Deployed</label>
+        <input type="number" name="Police Deployed" required />
+      </div>
+
+      <input type="submit" class="btn-submit" value="Predict" />
+    </form>
+
+    {% if prediction_text %}
+    <div class="result">{{ prediction_text }}</div>
+    {% endif %}
+  </div>
+</body>
+</html>
